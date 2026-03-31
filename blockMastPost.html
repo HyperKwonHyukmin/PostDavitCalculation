@@ -1,0 +1,71 @@
+{% extends "rootCloud.html" %}
+
+{% block contents %}
+<style>
+    .mp-container { width: 1000px; max-width: 95%; margin: 50px auto; padding: 40px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-radius: 12px; }
+    .mp-header { font-size: 1.8em; color: #002b5c; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+
+    .data-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px; }
+    .data-table th, .data-table td { border: 1px solid #ddd; padding: 12px; vertical-align: middle; }
+    .data-table th { background-color: #f8f9fa; color: #333; text-align: left; width: 30%; }
+
+    .input-editable { background-color: #fff9c4 !important; border: 2px solid #fbc02d; font-weight: bold; width: 100%; box-sizing: border-box; padding: 6px; }
+    .input-readonly { background-color: #e9ecef; border: 1px solid #ccc; width: 100%; box-sizing: border-box; padding: 6px; color: #666; cursor: not-allowed; }
+
+    .btn-execute { background-color: #002b5c; color: #fff; border: none; padding: 12px 30px; font-size: 16px; border-radius: 6px; cursor: pointer; display: block; width: 100%; font-weight: bold; }
+    .btn-execute:hover { background-color: #001f44; }
+</style>
+
+<main class="main">
+    {% include "sideMenu.html" %}
+
+    <div class="mp-container">
+        <h1 class="mp-header">Mast & Post Design Optimization (Test)</h1>
+        <p style="margin-bottom: 20px; color: #666;">노란색 셀(H, Weight)의 값을 입력하고 실행 버튼을 눌러 서버 전달 테스트를 진행하세요.</p>
+
+        <form action="/mastpost/mastpost" method="POST">
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <th rowspan="2">Post</th>
+                        <td>Post Height [H] (mm)</td>
+                        <td><input type="number" name="postHeight" class="input-editable" value="4200.0" step="0.1"></td>
+                    </tr>
+                    <tr>
+                        <td>Post Weight (kg)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="4">Bracket</th>
+                        <td>Direction (°)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <td>Bracket Height [BH] (mm)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <td>Bracket Breadth [BB] (mm)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <td>Bracket Thickness [BT] (mm)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">Platform</th>
+                        <td>Height [HP] (mm)</td>
+                        <td><input type="text" class="input-readonly" readonly value="-"></td>
+                    </tr>
+                    <tr>
+                        <td>Weight (kg)</td>
+                        <td><input type="number" name="platformWeight" class="input-editable" value="150.0" step="0.1"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn-execute">서버로 값 전송하기 (Test)</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
